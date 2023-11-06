@@ -1,10 +1,16 @@
 const express = require("express");
 
+const save = require("./modules/save");
+
 const app = express();
 
+const PORT = 3000;
+
+app.use(express.urlencoded({ extended: true }));
+
 app.post("/api/save", (req, res) => {
-  res.send("Votre film a bien été ajouté à vos favoris !");
-  console.log("Il est arrivé !");
+  const imdbID = req.body.imdbID;
+  save(imdbID);
 });
 
-app.listen(3000, () => console.log("Le serveur est lancé sur le port 3000"));
+app.listen(PORT, () => console.log("Le serveur est lancé sur le port " + PORT));
