@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Movies({ movies }) {
   const imdb = "https://imdb.com/title/";
 
@@ -7,6 +5,20 @@ export default function Movies({ movies }) {
     <div className="movies">
       {movies.map((movie) => (
         <div className="movie" key={movie.imdbID}>
+          <form
+            className="favorite"
+            method="POST"
+            action="http://localhost:3000/api/save"
+          >
+            <input type="hidden" name="imdbID" value={movie.imdbID} />
+            <button type="submit" className="btn-favorite">
+              <img
+                src="https://api.iconify.design/mdi:star-circle.svg"
+                alt="star"
+                width="50"
+              />
+            </button>
+          </form>
           <div className="movie-info">
             <img
               src={
@@ -18,12 +30,8 @@ export default function Movies({ movies }) {
             />
             <h3>{movie.Title}</h3>
             <p>
-              Voir les détailes{" "}
-              <a
-                href={`${imdb}${movie.imdbID}`}
-                rel="noreferrer"
-                target="_blank"
-              >
+              Voir les détails
+              <a href={imdb + movie.imdbID} target="_blank">
                 IMDB
               </a>
             </p>
