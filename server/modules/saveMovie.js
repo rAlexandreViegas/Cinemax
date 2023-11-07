@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-function save(movieID, response) {
+function saveMovie(movieID, response) {
   const newFavorite = { id: movieID[0], movie: movieID[1] };
   let jsonData;
 
@@ -37,4 +37,4 @@ function save(movieID, response) {
   });
 }
 
-module.exports = save;
+module.exports = saveMovie;
