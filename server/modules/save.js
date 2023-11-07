@@ -1,37 +1,37 @@
 const fs = require("fs");
 
 function save(movieID, response) {
-  try {
-    fs.readFile("./data.json", "utf8", (err, data) => {
-      if (err) {
-        response.send(
-          "Une erreur est survenue lors de l'ajout du film à vos favoris."
-        );
+  const newFavorite = { id: movieID[0], movie: movieID[1] };
+
+  fs.readFile("./data.json", "utf8", (err, data) => {
+    if (err) {
+      return response.send(err);
+    }
+
+    try {
+      let jsonData = JSON.parse(data);
+
+      const movieExist = jsonData.favorites.some((favorite) => {
+        return favorite.id === newFavorite.id;
+      });
+
+      if (movieExist) {
+        response.send("Le film est déjà dans les favoris.");
       } else {
-        let jsonData = JSON.parse(data);
+        jsonData.favorites.push(newFavorite);
 
-        if (jsonData.favorites.includes(movieID)) {
-          response.send("Le film est déjà dans les favoris.");
-        } else {
-          jsonData.favorites.push(movieID);
+        fs.writeFile("./data.json", JSON.stringify(jsonData), (err) => {
+          if (err) {
+            return response.send(err);
+          }
 
-          fs.writeFile("./data.json", JSON.stringify(jsonData), (err) => {
-            if (err) {
-              response.send(
-                "Une erreur est survenue lors de l'ajout du film à vos favoris."
-              );
-            } else {
-              res.send("Le film a bien été ajouté à vos favoris !");
-            }
-          });
-        }
+          response.send("Le film a bien été ajouté à vos favoris !");
+        });
       }
-    });
-  } catch (error) {
-    response.send(
-      "Une erreur est survenue lors de l'ajout du film à vos favoris."
-    );
-  }
+    } catch (error) {
+      response.send(error);
+    }
+  });
 }
 
 module.exports = save;

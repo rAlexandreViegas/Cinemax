@@ -11,6 +11,7 @@ export default function Movies({ movies }) {
             action="http://localhost:3000/api/save"
           >
             <input type="hidden" name="imdbID" value={movie.imdbID} />
+            <input type="hidden" name="imdbID" value={movie.Title} />
             <button type="submit" className="btn-favorite">
               <img
                 src="https://api.iconify.design/mdi:star-circle.svg"
