@@ -9,7 +9,6 @@ export default function App() {
   const API = "https://www.omdbapi.com/?apikey=934f5780";
 
   const [movies, setMovies] = useState([]);
-  const [search, setSearch] = useState("");
 
   const searchMovies = async (searchValue) => {
     try {
@@ -30,11 +29,7 @@ export default function App() {
     <div className="App">
       <header>
         <img src={cinemaxLogo} className="logo" alt="logo cinema" />
-        <Search
-          search={search}
-          setSearch={setSearch}
-          searchMovies={searchMovies}
-        />
+        <Search searchMovies={searchMovies} />
       </header>
       <main>
         <Movies movies={movies} />

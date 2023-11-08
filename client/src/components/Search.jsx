@@ -1,4 +1,8 @@
-export default function Search({ search, setSearch, searchMovies }) {
+import { useState } from "react";
+
+export default function Search({ searchMovies }) {
+  const [search, setSearch] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     searchMovies(search);
