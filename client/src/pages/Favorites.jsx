@@ -1,25 +1,64 @@
 import { useEffect, useState } from "react";
 
+import Movies from "../components/Movies";
+
 export default function Favorites() {
   const API = "http://localhost:3000/api/favorites";
+  const omdbAPI = "https://www.omdbapi.com/?apikey=13caa88d";
 
   const [favorites, setFavorites] = useState([]);
+  const [movies, setMovies] = useState([]);
+
+  async function fetchFavorites() {
+    try {
+      const res = await fetch(API);
+      const data = await res.json();
+
+      if (data.favorites) {
+        setFavorites(data.favorites);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function fetchMovies() {
+    const moviesArray = [];
+
+    try {
+      for (const el of favorites) {
+        const res = await fetch(`${omdbAPI}&i=${el.id}`);
+        const data = await res.json();
+
+        moviesArray.push({
+          imdbID: data.imdbID,
+          Title: data.Title,
+          Poster: data.Poster,
+        });
+
+        if (moviesArray.length > 0) {
+          setMovies(moviesArray);
+        }
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   useEffect(() => {
-    fetch(API)
-      .then((response) => response.json())
-      .then((data) => setFavorites(data.favorites))
-      .catch((error) => console.error(error));
+    fetchFavorites();
+  }, []);
+
+  useEffect(() => {
+    fetchMovies();
   }, [favorites]);
 
   return (
-    <div>
-      <p>Favorites</p>
-      <ul>
-        {favorites.map((favorite) => (
-          <li key={favorite.id}>{favorite.movie}</li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <h1>Favorites</h1>
+      <div>
+        <Movies movies={movies} />
+      </div>
+    </>
   );
 }

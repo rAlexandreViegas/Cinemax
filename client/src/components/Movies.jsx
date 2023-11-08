@@ -24,7 +24,7 @@ export default function Movies({ movies }) {
             <h3>{movie.Title}</h3>
             <p>
               Voir les détails
-              <a href={imdbURL + movie.imdbID} target="_blank">
+              <a href={`${imdbURL}${movie.imdbID}`} target="_blank">
                 IMDB
               </a>
             </p>

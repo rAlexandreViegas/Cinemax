@@ -6,22 +6,20 @@ import Search from "../components/Search";
 import Movies from "../components/Movies";
 
 export default function App() {
-  const omdbAPI = "https://www.omdbapi.com/?apikey=934f5780";
+  const omdbAPI = "https://www.omdbapi.com/?apikey=13caa88d";
 
   const [movies, setMovies] = useState([]);
 
   const searchMovies = async (searchValue) => {
     try {
-      const response = await fetch(`${omdbAPI}&s=${searchValue}`);
-      const data = await response.json();
+      const res = await fetch(`${omdbAPI}&s=${searchValue}`);
+      const data = await res.json();
 
       if (data.Search) {
         setMovies(data.Search);
       }
-
-      console.log(movies);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
     }
   };
 
