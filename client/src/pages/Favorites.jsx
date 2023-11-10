@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 
+import cinemaxLogo from "../assets/cinemax-lg.png";
+
+import Nav from "../components/Nav";
 import Movies from "../components/Movies";
 
 export default function Favorites() {
@@ -55,7 +58,11 @@ export default function Favorites() {
 
   return (
     <>
-      <h1>Favorites</h1>
+      <Nav />
+      <header>
+        <img src={cinemaxLogo} className="logo" alt="logo cinemax" />
+        <h1>Favoris</h1>
+      </header>
       <div>
         <Movies movies={movies} />
       </div>

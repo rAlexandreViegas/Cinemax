@@ -18,17 +18,12 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   color: #fff;
-  background: #222;
+  background: #181818;
   background-image: url("/src/assets/cinemax-bg.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   overflow-x: hidden;
-}
-
-.App {
-  padding: 5rem 0;
-  /* max-width: 1000px; */
 }
 
 /* Fonts */
@@ -69,6 +64,29 @@ header {
   display: grid;
   place-items: center;
   padding: 2rem;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 0.75em;
+  background: #181818;
+  border-bottom: 1px solid #f9f9f9;
+}
+
+.nav {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #f9f9f9;
+  font-weight: 500;
 }
 
 .logo {
