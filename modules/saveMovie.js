@@ -18,7 +18,7 @@ function saveMovie(movieID, response) {
       );
 
       if (movieExist) {
-        response.send("Le film est déjà dans les favoris.");
+        response.status(409);
       } else {
         jsonData.favorites.push(newFavorite);
 
@@ -28,7 +28,7 @@ function saveMovie(movieID, response) {
             return;
           }
 
-          response.send("Le film a bien été ajouté à vos favoris !");
+          response.redirect("/favorites");
         });
       }
     } catch (error) {

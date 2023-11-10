@@ -10,6 +10,10 @@ const PORT = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: "http://localhost:5000", credentials: true }));
 
+app.get("/", (req, res) => {
+  res.redirect("/");
+});
+
 app.post("/api/save", (req, res) => {
   const imdbID = req.body.imdbID;
   saveMovie(imdbID, res);
