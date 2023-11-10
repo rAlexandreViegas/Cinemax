@@ -1,5 +1,5 @@
 export default function Movies({ movies }) {
-  const API = "http://localhost:3000/api/save";
+  const API = "/api/save";
   const favIcon = "https://api.iconify.design/mdi:star-circle.svg";
   const placeHolder =
     "https://placehold.co/300x450/000000/FFF?text=Non+disponible";

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Movies from "../components/Movies";
 
 export default function Favorites() {
-  const API = "http://localhost:3000/api/favorites";
+  const API = "/api/favorites";
   const omdbAPI = "https://www.omdbapi.com/?apikey=13caa88d";
 
   const [favorites, setFavorites] = useState([]);
