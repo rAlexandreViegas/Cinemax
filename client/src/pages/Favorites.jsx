@@ -35,10 +35,10 @@ export default function Favorites() {
           Title: data.Title,
           Poster: data.Poster,
         });
+      }
 
-        if (moviesArray.length > 0) {
-          setMovies(moviesArray);
-        }
+      if (moviesArray.length > 0) {
+        setMovies(moviesArray);
       }
     } catch (err) {
       console.error(err);
